@@ -1,0 +1,14 @@
+
+<div class="col-md-4">
+	<div class="list-group">
+	{{#each model as |golfer|}}
+		<li>{{#link-to 'golfers.golfer' golfer}}
+			{{golfer.name}}
+		{{/link-to}}</li>
+	{{/each}}	
+	</div>
+</div>
+
+<div class="col-md-8">
+	{{outlet}}
+</div>
