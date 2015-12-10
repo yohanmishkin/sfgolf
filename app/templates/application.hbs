@@ -1,22 +1,10 @@
 <div class="container">
 	<div class="page-header">
 		<h2 id="title" class="text-center">The Masters</h2>
-
-		<ul class="nav nav-pills">
-			{{#if session.isAuthenticated}}
-				<li>{{link-to 'Leaderboard' 'leaderboard'}}</li>
-				<li>{{link-to 'Golfers' 'golfers'}}</li>
-				<li>{{link-to 'My Team' 'team'}}</li>
-
-
-				<button class='btn btn-danger pull-right' {{action 'logout'}}>Logout</button>
-				{{#if sessionAccount.account}}
-        			<p class="navbar-text pull-right">Signed in as {{sessionAccount.account.name}}</p>
-      			{{/if}}
-			{{else}}
-				<li class="pull-right">{{link-to 'Login' 'login'}}</li>
-				<li class="pull-right">{{link-to 'Signup' 'signup'}}</li>
-			{{/if}}
+		<ul class="nav nav-pills">			
+			<li>{{link-to 'Leaderboard' 'leaderboard'}}</li>
+			<li>{{link-to 'Golfers' 'golfers'}}</li>
+			<li>{{link-to 'My Team' 'team'}}</li>
 		</ul>		
 	</div>
 

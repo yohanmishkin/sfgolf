@@ -7,13 +7,13 @@ var Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('golfers', function() {
-    this.route('golfer', { path: ':slug' });
+    this.route('golfer', { path: ':id' });
   });
   this.route('leaderboard');
   this.route('team');
 
-  this.route('login');
-  this.route('signup');
+  // this.route('login');
+  // this.route('signup');
 });
 
 export default Router;

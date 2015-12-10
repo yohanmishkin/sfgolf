@@ -1,12 +1,14 @@
 import DS from 'ember-data';
 
-export default Ember.Object.extend({
-  name: '', //DS.attr('string'),
-  ranking: 0,
-  country: 'US',
-  score: 0,  
+export default DS.Model.extend({
+  firstName: DS.attr('string'),
+  lastName: DS.attr('string'),
+  ranking: DS.attr('number'),
+  country: DS.attr('string'),
+  score: DS.attr('number'),
 
-  slug: Ember.computed('name', function() {
-  	return this.get('name').dasherize();
+  name: Ember.computed('firstName', 'lastName', function() {
+  	return `${this.get('firstName')} ${this.get('lastName')}`;
   })
+  
 });
