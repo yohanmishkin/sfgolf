@@ -9,11 +9,12 @@ Router.map(function() {
   this.route('golfers', function() {
     this.route('golfer', { path: ':id' });
   });
-  this.route('leaderboard');
-  this.route('team');
-
+   
+  this.route('teams', function() {
+  	this.route('team', { path: ':id' });
+  });
   // this.route('login');
-  // this.route('signup');
+  // this.route('signup');  
 });
 
 export default Router;

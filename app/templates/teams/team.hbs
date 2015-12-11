@@ -1,6 +1,6 @@
 <div class="col-md-4 col-xs-4">
 	<div class="list-group">
-	{{#each teamMembers as |golfer|}}		
+	{{#each model as |golfer|}}		
 		{{#link-to 'golfers.golfer' golfer tagName='li' class="list-group-item"}}
 			{{golfer.name}}
 		{{/link-to}}
