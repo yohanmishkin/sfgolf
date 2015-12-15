@@ -2,6 +2,7 @@ export default function() {
 
   this.get('/api/golfers');
   this.get('/api/users');
+  this.get('/api/teams');
 
   // These comments are here to help you get started. Feel free to delete them.
 

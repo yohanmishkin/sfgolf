@@ -15,7 +15,9 @@
     "bootstrap": "~3.3.5",
     "pretender": "~0.10.1",
     "lodash": "~3.7.0",
-    "Faker": "~3.0.0"
+    "Faker": "~3.0.0",
+    "hammerjs": "~2.0.4",
+    "matchMedia": "0.2.0"
   },
   "resolutions": {
     "ember": "2.1.0"
