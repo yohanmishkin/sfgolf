@@ -5,6 +5,7 @@ export default function( server ) {
 	var doug = server.create('user', { firstName: 'Doug', lastName: 'Miller'});
 	var miraj = server.create('user', { firstName: 'Miraj', lastName: 'Patel'});
 	
+	server.loadFixtures();
 
 	// Seed your development database using your factories. This
 	// data will not be loaded in your tests.

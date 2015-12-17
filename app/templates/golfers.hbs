@@ -1,14 +1,12 @@
 
 <div class="col-md-4 col-xs-4">
-	{{#paper-content class="md-whiteframe-z1 list-demo"}}
-	  {{#paper-list}}
-	    {{#each model as |golfer|}}
-	      {{#paper-item class="md-3-line" action=(action 'transition' 'golfers.golfer' golfer)}}
-				<h3>{{golfer.name}}</h3>
-	      {{/paper-item}}
-	    {{/each}}
-	  {{/paper-list}}
-	{{/paper-content}}	
+	<div class="list-group">
+	{{#each model as |golfer|}}		
+		{{#link-to 'golfers.golfer' golfer tagName='li' class="list-group-item"}}
+			{{golfer.name}}
+		{{/link-to}}
+	{{/each}}
+	</div>
 </div>
 
 <div class="col-md-8 col-xs-8">
