@@ -2,9 +2,9 @@
 
 <div class="col-md-12 col-xs-12">
 	<div class="list-group">
-		<ol>{{#each model as |user|}}
-			{{#link-to 'teams.team' user tagName='li' class="list-group-item"}}
-				{{user.name}}
+		<ol>{{#each model as |team|}}
+			{{#link-to 'teams.team' team tagName='li' class="list-group-item"}}
+				{{team.user.name}}
 			{{/link-to}}
 		{{/each}}</ol>
 	</div>

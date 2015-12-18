@@ -6,7 +6,7 @@ export default DS.Model.extend({
 	ranking: DS.attr('number'),
 	country: DS.attr('string'),
 	score: DS.attr('number'),
-	owners: DS.hasMany('user'),
+	teams: DS.hasMany('team'),
 
 	name: Ember.computed('firstName', 'lastName', function() {
 		return `${this.get('firstName')} ${this.get('lastName')}`;
