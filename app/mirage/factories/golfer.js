@@ -5,5 +5,6 @@ export default Mirage.Factory.extend({
   lastName: faker.name.lastName,
   ranking: faker.random.number,
   country: faker.address.country,
-  age: faker.random.number  
+  age: faker.random.number,
+  teams: []
 });

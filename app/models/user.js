@@ -5,7 +5,7 @@ export default DS.Model.extend({
   	lastName: DS.attr('string'),
   	email: DS.attr('string'),
   	password: DS.attr('string'),
-  	team: DS.hasMany('golfer'),
+  	team: DS.belongsTo('team'),
 
   	name: Ember.computed('firstName', 'lastName', function() {
   		return `${this.get('firstName')} ${this.get('lastName')}`;

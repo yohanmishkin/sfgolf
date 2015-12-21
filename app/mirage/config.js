@@ -7,7 +7,7 @@ export default function() {
   this.get('/api/golfers/:id');
   
   this.get('/api/teams');
-  this.get('/api/teams/:id', ['teams', 'users', 'golfers']);
+  this.get('/api/teams/:id');
 
   // These comments are here to help you get started. Feel free to delete them.
 

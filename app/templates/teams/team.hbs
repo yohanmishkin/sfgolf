@@ -1,1 +1,8 @@
-<h4>{{model.name}}</h4>
+<h4>{{model.user.firstName}}'s team</h4>
+<ul>
+	{{#each model.golfers as |golfer|}}
+		{{#link-to 'golfers.golfer' golfer tagName='li'}}
+			{{golfer.name}}
+		{{/link-to}}
+	{{/each}}
+</ul>
