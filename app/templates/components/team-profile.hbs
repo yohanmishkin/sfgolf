@@ -1,0 +1,12 @@
+{{#if noGolfers}}
+	<h4>{{team.user.firstName}} hasn't picked their team yet</h4>
+{{else}}
+	<h4>{{team.user.firstName}}'s team</h4>
+	<ul>
+		{{#each team.golfers as |golfer|}}
+			{{#link-to 'golfers.golfer' golfer tagName='li'}}
+				{{golfer.name}}
+			{{/link-to}}
+		{{/each}}
+	</ul>
+{{/if}}

@@ -7,6 +7,7 @@ export default function( server ) {
 
 	var team1 = server.create('team', {user: rob.id});
 	var team2 = server.create('team', { user: doug.id });
+	var team3 = server.create('team', { user: miraj.id });
 
 	server.createList('golfer', 5, { teams: [team1.id] } );
 	server.createList('golfer', 7, { teams: [team2.id] } );
