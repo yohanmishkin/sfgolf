@@ -2,8 +2,9 @@
 <div class="col-md-4 col-xs-4">
 	<div class="list-group">
 	{{#each model as |golfer|}}		
-		{{#link-to 'golfers.golfer' golfer tagName='li' class="list-group-item"}}
+		{{#link-to 'golfers.golfer' golfer tagName='li' class="list-group-item golfer-link"}}
 			{{golfer.name}}
+			<!-- <span class="pointer glyphicon glyphicon-chevron-right"></span> -->
 		{{/link-to}}
 	{{/each}}
 	</div>
