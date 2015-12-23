@@ -4,7 +4,7 @@
 	<h4>{{team.user.firstName}}'s team</h4>
 	<ul>
 		{{#each team.golfers as |golfer|}}
-			{{#link-to 'golfers.golfer' golfer tagName='li'}}
+			{{#link-to 'golfers.golfer' golfer tagName='li' class='golfer-link'}}
 				{{golfer.name}}
 			{{/link-to}}
 		{{/each}}

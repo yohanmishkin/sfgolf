@@ -1,8 +1,0 @@
-.golfer-link .pointer {
-	float: right;
-	display: none;
-}
-
-.golfer-link.active .pointer {
-	display: block;
-}
