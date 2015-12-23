@@ -2,16 +2,12 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 	actions: {
-		addGolfer(golfer) {
-			// Get current team
-			console.log('Added ' + golfer.get('name'));
-			// Check number on current team
-			// Check ranking
-			// Add to team
+		addGolfer(golfer) {			
+			this.sendAction('addGolfer', golfer);	
 		},
 
-		removeGolfer() {
-			console.log('removeGolfer() was clicked');
+		removeGolfer(golfer) {
+			this.sendAction('removeGolfer', golfer);
 		}
 	}
 });

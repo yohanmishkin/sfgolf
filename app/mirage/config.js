@@ -3,11 +3,13 @@ export default function() {
   this.get('/api/users');
   this.get('/api/users/:id');
 
-  this.get('/api/golfers');
-  this.get('/api/golfers/:id');
+  this.get('/api/golfers', ['golfers', 'teams']);
+  this.get('/api/golfers/:id', ['golfer', 'teams']);  
   
   this.get('/api/teams', ['teams', 'users', 'golfers']);
   this.get('/api/teams/:id', ['team', 'user', 'golfers']);
+  this.put('/api/teams/:id');
+
 
   // These comments are here to help you get started. Feel free to delete them.
 
