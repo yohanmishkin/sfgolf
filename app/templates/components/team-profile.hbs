@@ -1,5 +1,6 @@
 {{#if noGolfers}}
 	<h4>{{team.user.firstName}} hasn't picked their team yet</h4>
+	{{#link-to 'golfers'}}Find some golfers{{/link-to}}
 {{else}}
 	<h4>{{team.user.firstName}}'s team</h4>
 	<ul>

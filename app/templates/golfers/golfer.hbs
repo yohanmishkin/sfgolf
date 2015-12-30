@@ -1,4 +1,8 @@
 {{golfer-profile 
-	golfer=model 
-	addGolfer=(action 'addGolfer')
-	removeGolfer=(action 'removeGolfer')}}
+	golfer=model}}
+
+{{#if isNotOnTeam}}
+	<button {{action 'addGolfer' model}} class='btn btn-default'>Add to team</button>
+{{else}}
+	<button {{action 'removeGolfer' model}} class='btn btn-danger'>Remove from team</button>
+{{/if}}
