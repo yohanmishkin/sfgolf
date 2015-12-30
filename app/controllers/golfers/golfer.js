@@ -24,6 +24,7 @@ export default Ember.Controller.extend({
 			// Check ranking
 			// Add to team
 			team.get('golfers').pushObject(golfer);
+			team.save();
 		},
 
 		removeGolfer: function(golfer) {
