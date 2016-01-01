@@ -5,5 +5,4 @@ export default Ember.Route.extend({
 		var golfers = this.modelFor('golfers');	
 		return golfers.findBy('slug', params.slug);
 	}
-
 });
