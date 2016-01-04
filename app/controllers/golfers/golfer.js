@@ -19,30 +19,48 @@ export default Ember.Controller.extend({
 			this.store.findRecord('team', 3).then(function(team) {
 				
 				// Check number on current team
-				if (team.get('golfers.length') >= 10)
+				var teamGolfers = team.get('golfers');
+				if (teamGolfers.length >= 10)
 				{
 					console.log('Team is full!');
 					return;
 				}
 
+				// get array of current team's rankings
 				var ranking = golfer.get('ranking');
-				if (ranking > 0 && ranking <= 5) {
+				var teamRankings = teamGolfers.mapBy('ranking');
+				var checks = [];
+				teamRankings.forEach(function(ranking) {
+					console.log('Ranking: ' + ranking);
+				});
 
+				if (ranking > 0 && ranking <= 5) {
+					checks = [1, 2, 3, 4, 5];
+					// current team already have golfer in this ranking?
+					// yes
+						// alert
+					// no
+						// add
 				}
 				else if (ranking > 5 && ranking <= 10) {
-					
+					checks = [6, 7, 8, 9, 10];
 				}
 				else if (ranking > 10 && ranking <= 15) {
-					
+					checks = [11, 12, 13, 14, 15];
 				}
 				else if (ranking > 15 && ranking <= 20) {
-					
+					checks = [16, 17, 18, 19, 20];
 				}
 				else if (ranking > 20 && ranking <= 25) {
-					
+					checks = [21, 22, 23, 24, 25];
 				}
 				else {
-
+					// Find number of teamRankings > 25
+					// If num >=5
+						// alert
+					// else
+						// add to team
+					console.log('The field');
 				}
 
 				// Add to team
@@ -55,11 +73,11 @@ export default Ember.Controller.extend({
 		},
 
 		removeGolfer: function(golfer) {
-			// Get current team
-			this.store.peekRecord('team', 3).then(function(team) {
-				team.get('golfers').removeObject(golfer);
-				team.save();
-			});	
+			var team = this.store.peekRecord('team', 3);
+			team.get('golfers').removeObject(golfer);
+			golfer.get('teams').removeObject(team);
+			team.save();
+			golfer.save();
 		}
 	}
 });

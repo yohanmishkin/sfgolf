@@ -1,5 +1,13 @@
+
 <h4>{{golfer.name}}</h4>
 <ul>
 	<li><strong>Ranking:</strong> {{golfer.ranking}}</li>
 	<li><strong>Country:</strong> {{golfer.country}}</li>
 </ul>
+
+<hr>
+
+<h5><strong>People who picked him up:</strong></h5>
+{{#each golfer.teams as |team|}}
+	<h6>{{team.user.name}}</h6>
+{{/each}}
