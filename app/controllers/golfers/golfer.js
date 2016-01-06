@@ -30,9 +30,6 @@ export default Ember.Controller.extend({
 				var ranking = golfer.get('ranking');
 				var teamRankings = teamGolfers.mapBy('ranking');
 				var checks = [];
-				teamRankings.forEach(function(ranking) {
-					console.log('Ranking: ' + ranking);
-				});
 
 				if (ranking > 0 && ranking <= 5) {
 					checks = [1, 2, 3, 4, 5];
@@ -63,12 +60,22 @@ export default Ember.Controller.extend({
 					console.log('The field');
 				}
 
+				var result = teamRankings.filter(function(r) {
+					return (checks.indexOf(r) != -1)
+				});
+
+				if (result.length > 0) {
+					var message = 'Cannot add golfer to the team. You already have someone in that section';
+					console.log(message);
+					return;
+				}
+
 				// Add to team
 				team.get('golfers').pushObject(golfer);
 				golfer.get('teams').pushObject(team);
 				team.save();
 				golfer.save();
-				console.log('Number on team: ' + team.get('golfers.length'));
+				// console.log('Number on team: ' + team.get('golfers.length'));
 			});
 		},
 
