@@ -22,9 +22,10 @@ export default Ember.Controller.extend({
 				
 				// Check number on current team
 				var teamGolfers = team.get('golfers');
-				if (teamGolfers.length >= 10)
-				{
+				if (teamGolfers.length >= 10) {
 					console.log('Team is full!');
+					var message = 'Team is full! Remove some players from your team before adding any more.';
+					model.get('errors').add('ranking', message);
 					return;
 				}
 
@@ -35,11 +36,6 @@ export default Ember.Controller.extend({
 
 				if (ranking > 0 && ranking <= 5) {
 					checks = [1, 2, 3, 4, 5];
-					// current team already have golfer in this ranking?
-					// yes
-						// alert
-					// no
-						// add
 				}
 				else if (ranking > 5 && ranking <= 10) {
 					checks = [6, 7, 8, 9, 10];
@@ -53,23 +49,25 @@ export default Ember.Controller.extend({
 				else if (ranking > 20 && ranking <= 25) {
 					checks = [21, 22, 23, 24, 25];
 				}
-				else {
-					// Find number of teamRankings > 25
-					// If num >=5
-						// alert
-					// else
-						// add to team
-					console.log('The field');
-				}
 
 				var result = teamRankings.filter(function(r) {
 					return (checks.indexOf(r) != -1)
 				});
 
 				if (result.length > 0) {
-					var message = 'Cannot add golfer to the team. You already have someone on your team from that tier';
+					var message = 'Cannot add golfer to the team. You already have someone on your team from that tier.';
 					model.get('errors').add('ranking', message);
 					return;
+				}
+
+				if (ranking > 25) {
+					// Check number of current team members with ranking > 25
+					// 	// Find number of teamRankings > 25
+					// 	// If num >=5
+					// 		// alert
+					// 	// else
+					// 		// add to team
+					// 	console.log('The field');
 				}
 
 				// Add to team
@@ -88,5 +86,11 @@ export default Ember.Controller.extend({
 			team.save();
 			golfer.save();
 		}
+	},
+	
+	clearErrors: function() {
+		console.log('clearErrors() got called');
+		this.model.get('errors').clear();
 	}
+
 });
