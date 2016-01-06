@@ -16,6 +16,8 @@ export default Ember.Controller.extend({
 	actions: {
 		addGolfer: function(golfer) {
 			// Get current team
+			var model = this.get('model');
+			model.get('errors').clear();
 			this.store.findRecord('team', 3).then(function(team) {
 				
 				// Check number on current team
@@ -65,8 +67,8 @@ export default Ember.Controller.extend({
 				});
 
 				if (result.length > 0) {
-					var message = 'Cannot add golfer to the team. You already have someone in that section';
-					console.log(message);
+					var message = 'Cannot add golfer to the team. You already have someone on your team from that tier';
+					model.get('errors').add('ranking', message);
 					return;
 				}
 

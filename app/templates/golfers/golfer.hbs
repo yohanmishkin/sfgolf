@@ -1,6 +1,11 @@
 {{golfer-profile 
 	golfer=model}}
 
+<ul class="has-error">
+{{#each model.errors.ranking as |error|}}
+	<li class="help-block">{{error.message}}</li>
+{{/each}}
+</ul>
 {{#if isNotOnTeam}}
 	<button {{action 'addGolfer' model}} class='btn btn-default'>Add to team</button>
 {{else}}
