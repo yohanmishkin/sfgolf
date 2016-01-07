@@ -61,13 +61,16 @@ export default Ember.Controller.extend({
 				}
 
 				if (ranking > 25) {
-					// Check number of current team members with ranking > 25
-					// 	// Find number of teamRankings > 25
-					// 	// If num >=5
-					// 		// alert
-					// 	// else
-					// 		// add to team
-					// 	console.log('The field');
+
+					var greaterThan25 = teamRankings.filter(function(r) {
+						return r >= 25;
+					});
+
+					if (greaterThan25.length >= 5) {
+						var message = 'Cannot add golfer to the team. You have too many golfers from rankings 25+.';
+						model.get('errors').add('ranking', message);
+						return;		
+					}
 				}
 
 				// Add to team
@@ -75,7 +78,6 @@ export default Ember.Controller.extend({
 				golfer.get('teams').pushObject(team);
 				team.save();
 				golfer.save();
-				// console.log('Number on team: ' + team.get('golfers.length'));
 			});
 		},
 
