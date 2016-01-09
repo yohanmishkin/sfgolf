@@ -3,11 +3,24 @@
 	{{#link-to 'golfers'}}Find some golfers{{/link-to}}
 {{else}}
 	<h4>{{team.user.firstName}}'s team</h4>
-	<ul>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>Total</th>
+				<th>Golfer</th>
+				<th>PGA Ranking</th>
+			</tr>
+		</thead>
+		<tbody>
 		{{#each team.golfers as |golfer|}}
-			{{#link-to 'golfers.golfer' golfer tagName='li' class='golfer-link'}}
-				{{golfer.name}}
-			{{/link-to}}
+			<tr>
+				<td>{{golfer.score}}</td>
+				<td>{{#link-to 'golfers.golfer' golfer tagName='a' class='golfer-link'}}
+					<span class='link'>{{golfer.name}}</span>
+				{{/link-to}}</td>
+				<td>{{golfer.ranking}}</td>
+			</tr>
 		{{/each}}
-	</ul>
+		</tbody>
+	</table>
 {{/if}}
