@@ -6,18 +6,26 @@
 	<table class="table table-hover">
 		<thead>
 			<tr>
-				<th>Total</th>
 				<th>Golfer</th>
+				<th>Total</th>
+				<th>R1</th>
+				<th>R2</th>
+				<th>R3</th>
+				<th>R4</th>
 				<th>PGA Ranking</th>
 			</tr>
 		</thead>
 		<tbody>
 		{{#each team.golfers as |golfer|}}
 			<tr>
-				<td>{{golfer.score}}</td>
 				<td>{{#link-to 'golfers.golfer' golfer tagName='a' class='golfer-link'}}
 					<span class='link'>{{golfer.name}}</span>
 				{{/link-to}}</td>
+				<td>{{golfer.score}}</td>
+				<td>{{golfer.r1}}</td>
+				<td>{{golfer.r2}}</td>
+				<td>{{golfer.r3}}</td>
+				<td>{{golfer.r4}}</td>
 				<td>{{golfer.ranking}}</td>
 			</tr>
 		{{/each}}

@@ -1,6 +1,6 @@
-@import url(http://fonts.googleapis.com/css?family=Roboto+Slab|Open+Sans:400italic,700italic,400,700);
+@import url(http://fonts.googleapis.com/css?family=Lato|Open+Sans:400italic,700italic,400,700);
 
-$roboto-slab: 'Roboto Slab', serif;   
+$lato: 'Lato', serif;   
 $open-sans: 'Open Sans', sans-serif;
 
 body {
@@ -9,7 +9,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: $roboto-slab;
+  font-family: $lato;
   font-weight: normal;
 }
 

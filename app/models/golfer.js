@@ -11,10 +11,30 @@ export default DS.Model.extend({
 	r2: DS.attr('number'),
 	r3: DS.attr('number'),
 	r4: DS.attr('number'),
-	score: Ember.computed.sum('r1', 'r2', 'r3', 'r4'),
+	score: Ember.computed('r1', 'r2', 'r3', 'r4', function() {
+		let r1 = this.get('r1'),
+			r2 = this.get('r2'),
+			r3 = this.get('r3'),
+			r4 = this.get('r4');
 
-	name: Ember.computed('firstName', 'lastName', function() {
-		return `${this.get('firstName')} ${this.get('lastName')}`;
+		return r1 + r2 + r3 + r4;
+	}),
+
+	name: Ember.computed('firstName', 'lastName', {
+		get(key) {
+      		let firstName = this.get('firstName'),
+	        	lastName  = this.get('lastName');
+
+	      	return firstName + ' ' + lastName;
+	    },
+	    set(key, value) {
+	    	let [firstName, lastName] = value.split(' ');
+
+	      	this.set('firstName', firstName);
+	      	this.set('lastName', lastName);
+
+	      	return value;
+	    }
 	})
   
 });
