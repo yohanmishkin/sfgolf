@@ -28,3 +28,12 @@ test('Listing golfers', function(assert) {
     equal(find('.golfer-link').length, 5);
   })
 });
+
+test('Golfer profile displays country', function(assert) {
+  var golfer = server.create('golfer', { country: "Canada" });
+  visit('/golfers/' + golfer.id);
+
+  andThen(function () {
+    equal(find('li:contains("Canada")').length, 1);
+  });
+});

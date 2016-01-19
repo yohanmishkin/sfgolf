@@ -5,6 +5,13 @@ export default Ember.Controller.extend({
 	isNotOnTeam: (function() {
 		var golferId = this.model.get('id');
 		var team = this.store.peekRecord('team', 3);
+
+		if (typeof team === "undefined") {
+			return false;
+		} else {
+			return true;
+		}
+
 		var golfer = team.get('golfers').findBy('id', golferId);
 		if (typeof golfer === "undefined") {
 			return true;
