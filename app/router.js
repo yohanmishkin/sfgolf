@@ -13,8 +13,8 @@ Router.map(function() {
   this.route('teams', function() {
   	this.route('team', { path: ':id' });
   });
-  // this.route('login');
-  // this.route('signup');  
+  this.route('login');
+  this.route('signup');  
 });
 
 export default Router;
