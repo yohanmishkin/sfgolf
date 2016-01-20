@@ -5,6 +5,8 @@ module.exports = function(environment) {
     'ember-simple-auth': { authenticationRoute: 'login' },
     modulePrefix: 'sfgolf',
     environment: environment,
+    contentSecurityPolicy: { 'connect-src': "'self' https://auth.firebase.com wss://*.firebaseio.com" },
+    firebase: 'https://sfgolf.firebaseio.com/',
     baseURL: '/',
     locationType: 'auto',
     EmberENV: {
