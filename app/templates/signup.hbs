@@ -1,6 +1,15 @@
+<h3>Sign up</h3>
 <form {{action 'registerUser' on='submit'}}>
   <div class="form-group">
-    <label for="username">Signup</label>
+    <label for="firstName">First name</label>
+    {{input value=firstName placeholder='First name' class='form-control'}}
+  </div>
+  <div class="form-group">
+    <label for="lastName">Last name</label>
+    {{input value=lastName placeholder='Last name' class='form-control'}}
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
     {{input value=username placeholder='Email' class='form-control'}}
   </div>
   <div class="form-group">
@@ -11,13 +20,15 @@
     <label for="password">Password</label>
     {{input value=password_confirmation placeholder='Confirm password' class='form-control' type='password'}}
   </div>
-  <button type="submit" class="btn btn-default">Login</button>
+  <button type="submit" class="btn btn-default">Sign up!</button>
 </form>
 
 {{#if errorMessage}}
   <div class="alert alert-danger">
     <p>
-      <strong>Login failed:</strong> <code>{{errorMessage}}</code>
+      <strong>Signup failed:</strong> <code>{{errorMessage}}</code>
     </p>
   </div>
 {{/if}}
+
+{{link-to 'Log in' 'login'}}
