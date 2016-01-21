@@ -1,3 +1,5 @@
+import Mirage from 'ember-cli-mirage';
+
 export default function() {
 
   this.get('/api/users');
@@ -11,6 +13,28 @@ export default function() {
   this.get('/api/teams/:id', ['team', 'user', 'golfers']);
   this.put('/api/teams/:id');
 
+  this.post('/token', function(db, request) {
+    var params = formEncodedToJson(request.requestBody);
+    if (params.identification === "qwer" && params.password === "pass") {
+      return {
+        'access_token': 'passpasspass',
+        'token_type': 'bearer'
+      };
+    } else {
+      var body = { errors: "Username or password wrong" };
+      return new Mirage.Response(401, {}, body);
+    }
+
+  });
+
+  function formEncodedToJson(encoded) {
+    var result = {};
+    encoded.split("&").forEach(function(part) {
+      var item = part.split("=");
+      result[item[0]] = decodeURIComponent(item[1]);
+    });
+    return result;
+  }
 
   // These comments are here to help you get started. Feel free to delete them.
 
