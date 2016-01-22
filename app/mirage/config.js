@@ -22,9 +22,8 @@ export default function() {
         'access_token': 'passpasspass',
         'token_type': 'bearer'
       };
-    } else {
-      var body = { errors: "Username or password wrong" };
-      return new Mirage.Response(401, {}, body);
+    } else {      
+      return new Mirage.Response(401, {some: 'header'}, {error: 'Invalid credentails'});
     }
 
   });
