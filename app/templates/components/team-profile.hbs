@@ -18,7 +18,7 @@
 		<tbody>
 		{{#each team.golfers as |golfer|}}
 			<tr>
-				<td>{{#link-to 'golfers.golfer' golfer tagName='a' class='golfer-link'}}
+				<td>{{#link-to 'golfers.golfer' golfer}}
 					<span class='link'>{{golfer.name}}</span>
 				{{/link-to}}</td>
 				<td>{{golfer.score}}</td>
