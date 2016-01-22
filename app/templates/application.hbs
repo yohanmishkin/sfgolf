@@ -2,10 +2,15 @@
 	<div class="page-header">
 		<h2 id="title" class="text-center">The Masters</h2>
 		<ul class="nav nav-pills">			
-			<!-- <li>{{link-to 'My Team' 'teams.team' 3}}</li> -->
-			<li>{{link-to 'Leaderboard' 'teams'}}</li>
-			<li>{{link-to 'Golfers' 'golfers'}}</li>
-			<li><a href="http://www.masters.com/en_US/index.html" target="_blank">Masters.com</a></li>			
+			{{#if session.isAuthenticated}}
+				<li>{{link-to 'Leaderboard' 'teams'}}</li>
+				<li>{{link-to 'Golfers' 'golfers'}}</li>
+				<li><a href="http://www.masters.com/en_US/index.html" target="_blank">Masters.com</a></li>
+				<li class="pull-right"><a {{action 'logout'}}>Log out</a></li>		
+			{{else}}
+				<li class="pull-right">{{link-to 'Log in' 'login'}}</li>
+				<li class="pull-right">{{link-to 'Sign up' 'signup'}}</li>
+			{{/if}}
 		</ul>
 	</div>
 

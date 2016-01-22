@@ -4,6 +4,7 @@ export default function() {
 
   this.get('/api/users');
   this.get('/api/users/:id', ['users']);
+  this.post('/api/users');
 
   this.get('/api/golfers', ['golfers', 'teams']);
   this.get('/api/golfers/:id', ['golfer', 'teams']);
@@ -15,7 +16,8 @@ export default function() {
 
   this.post('/token', function(db, request) {
     var params = formEncodedToJson(request.requestBody);
-    if (params.identification === "qwer" && params.password === "pass") {
+    console.log(params);
+    if (params.username === "qwer" && params.password === "pass") {
       return {
         'access_token': 'passpasspass',
         'token_type': 'bearer'
