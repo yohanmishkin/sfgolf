@@ -12,12 +12,9 @@ export default Ember.Component.extend({
     		email: this.get('email'),
     		password: this.get('password')	
   		});
-  		
+
   		user.save().then(function(newUser) {
-    		sesh.authenticate('authenticator:oauth2', {
-        		identification: newUser.get('email'),
-        		password: newUser.get('password')
-        });
+    		sesh.authenticate('authenticator:oauth2', newUser.get('email'), newUser.get('password'));
       });
     }
   }

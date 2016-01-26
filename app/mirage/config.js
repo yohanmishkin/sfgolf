@@ -15,14 +15,23 @@ export default function() {
   this.put('/api/teams/:id');
 
   this.post('/token', function(db, request) {
-    var params = formEncodedToJson(request.requestBody);
-    console.log(params);
-    if (params.username === "qwer" && params.password === "pass") {
+    let params = formEncodedToJson(request.requestBody);
+    let users = db.users.where({email: params.username});
+    let user;
+
+    if (users.length > 0) {
+      user = users[0];
+    } else {
+      return new Mirage.Response(401, {some: 'header'}, {error: 'Invalid credentails'});
+    }
+
+    if (params.password === user.password) {
       return {
         'access_token': 'passpasspass',
         'token_type': 'bearer'
       };
-    } else {      
+    } else {
+      console.log(request.requestBody);
       return new Mirage.Response(401, {some: 'header'}, {error: 'Invalid credentails'});
     }
 
