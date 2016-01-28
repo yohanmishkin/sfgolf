@@ -4,8 +4,7 @@ export default Ember.Component.extend({
   session: Ember.inject.service('session'),
 
 	actions: {
-    registerUser() {
-      const sesh = this.get('session');
+    register() {      
   		let user = this.store.createRecord('user', {
     		firstName: this.get('firstName'),
     		lastName: this.get('lastName'),
@@ -14,7 +13,7 @@ export default Ember.Component.extend({
   		});
 
   		user.save().then(function(newUser) {
-    		sesh.authenticate('authenticator:oauth2', newUser.get('email'), newUser.get('password'));
+    		this.get('session').authenticate('authenticator:oauth2', newUser.get('email'), newUser.get('password'));
       });
     }
   }

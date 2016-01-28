@@ -1,15 +1,16 @@
 import Ember from 'ember';
 
-export default Ember.Component.extend({
-  session: Ember.inject.service('session'),
-  actions: {
-  	authenticate() {
-      let { identification, password } = this.getProperties('identification', 'password');
+const { service } = Ember.inject;
 
-      this.get('session').authenticate('authenticator:oauth2', identification, password).catch((reason) => {
+export default Ember.Component.extend({
+  session: service('session'),
+
+  actions: {
+    authenticate() {
+      let { email, password } = this.getProperties('email', 'password');
+      this.get('session').authenticate('authenticator:oauth2', email, password).catch((reason) => {
         this.set('errorMessage', reason.error);
       });
-  	}
+    }
   }
-
 });
