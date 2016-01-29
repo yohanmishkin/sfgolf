@@ -1,7 +1,7 @@
 export default function( server ) {
 
 
-	var rob = server.create('user', { firstName: 'Rob', lastName: 'Pitts'});
+	var rob = server.create('user', { firstName: 'Rob', lastName: 'Pitts', email: 'rp', password: 'asdf' });
 	var doug = server.create('user', { firstName: 'Doug', lastName: 'Miller'});
 	var miraj = server.create('user', { firstName: 'Miraj', lastName: 'Patel'});
 	var javier = server.create('user', { firstName: 'Javier', lastName: 'Benitez' });

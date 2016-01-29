@@ -15,7 +15,7 @@ export default function() {
   this.put('/api/teams/:id');
 
   this.post('/token', function(db, request) {
-    let params = formEncodedToJson(request.requestBody);
+    let params = formEncodedToJson(request.requestBody);    
     let users = db.users.where({email: params.username});
     let user;
 

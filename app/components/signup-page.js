@@ -1,20 +1,29 @@
 import Ember from 'ember';
 
+const { service } = Ember.inject;
+
 export default Ember.Component.extend({
-  session: Ember.inject.service('session'),
+  session: service('session'),
 
 	actions: {
+    
     register() {      
-  		let user = this.store.createRecord('user', {
-    		firstName: this.get('firstName'),
-    		lastName: this.get('lastName'),
-    		email: this.get('email'),
-    		password: this.get('password')	
-  		});
+      let self = this;
+      let { email, password } = this.getProperties('email', 'password');
+      let user = this.store.createRecord('user', {
+        firstName: this.get('firstName'),
+        lastName: this.get('lastName'),
+        email: this.get('email'),
+        password: this.get('password')
+      });
 
-  		user.save().then(function(newUser) {
-    		this.get('session').authenticate('authenticator:oauth2', newUser.get('email'), newUser.get('password'));
+      user.save().then(function() {        
+      	self.get('session').authenticate('authenticator:register', email, password, {}).catch((reason) => {
+          self.set('errorMessage', reason.error || reason);
+        });
       });
     }
+
   }
+
 });
