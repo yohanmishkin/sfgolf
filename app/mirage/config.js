@@ -28,10 +28,10 @@ export default function() {
     if (params.password === user.password) {
       return {
         'access_token': 'passpasspass',
-        'token_type': 'bearer'
+        'token_type': 'bearer',
+        'user_id': user.id
       };
     } else {
-      console.log(request.requestBody);
       return new Mirage.Response(401, {some: 'header'}, {error: 'Invalid credentails'});
     }
 
