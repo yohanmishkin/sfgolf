@@ -9,7 +9,7 @@ export default Ember.Component.extend({
     authenticate() {
       let { email, password } = this.getProperties('email', 'password');
       this.get('session').authenticate('authenticator:oauth2', email, password).catch((reason) => {
-        this.set('errorMessage', reason.error);
+        this.get('flashMessages').danger(reason.error);
       });
     }
   }

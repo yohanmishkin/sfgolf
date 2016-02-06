@@ -1,8 +1,54 @@
 import Ember from 'ember';
+import { validator, buildValidations } from 'ember-cp-validations';
 
 const { service } = Ember.inject;
 
-export default Ember.Component.extend({
+var Validations = buildValidations({
+  firstName: {
+      debounce: 500,
+      validators: [
+        validator('presence', true),
+        validator('length', {
+          max: 15
+        })
+      ]
+  },
+  lastName: {
+      debounce: 500,
+      validators: [
+        validator('presence', true),
+        validator('length', {
+          max: 25
+        })
+      ]
+  },
+  email: {
+      debounce: 500,
+      validators: [
+        validator('presence', true),
+        validator('format', {
+          type: 'email'
+        })
+      ]
+  },
+  password: {
+      description: 'Password',
+      debounce: 500,
+      validators: [
+        validator('presence', true),
+        validator('length', {
+          min: 4,
+          max: 8
+        }),
+        validator('format', {
+          regex: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,8}$/,
+          message: '{description} must include at least...'
+        })
+      ]
+    }
+});
+
+export default Ember.Component.extend(Validations, {
   session: service('session'),
 
 	actions: {
