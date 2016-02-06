@@ -1,18 +1,31 @@
 import Ember from 'ember';
+import Pretender from 'pretender';
 import { module, test } from 'qunit';
-import startApp from 'sfgolf/tests/helpers/start-app';
+import { authenticateSession, invalidateSession } from '../helpers/ember-simple-auth';
+import startApp from '../helpers/start-app';
+import startMirage from '../helpers/start-mirage';
 
-module('Acceptance | golfers', {
-  beforeEach: function() {
-    this.application = startApp();
+var App;
+var pretendServer;
+
+module('Acceptance | Golfers', {
+  setup: function() {
+    App = startApp();
+    pretendServer = new Pretender(function() {
+      this.post('/token', function() {
+        return [200, { 'Content-Type': 'application/json' }, '{ "access_token": "access_token" }'];
+      });
+    });
+    startMirage(this.container);
   },
-
-  afterEach: function() {
-    Ember.run(this.application, 'destroy');
-  }
+  teardown: function() {
+    Ember.run(App, App.destroy);
+    pretendServer.shutdown();
+  },
 });
 
 test('visiting /golfers', function(assert) {
+  authenticateSession(App);
   visit('/golfers');
 
   andThen(function() {
@@ -21,15 +34,17 @@ test('visiting /golfers', function(assert) {
 });
 
 test('Listing golfers', function(assert) {
+  authenticateSession(App);
   server.createList('golfer', 5);
   visit('/golfers');
 
   andThen(function() {
     equal(find('.golfer-link').length, 5);
-  })
+  });
 });
 
 test('Golfer profile displays country', function(assert) {
+  authenticateSession(App);
   var golfer = server.create('golfer', { country: "Canada" });
   visit('/golfers/' + golfer.id);
 
