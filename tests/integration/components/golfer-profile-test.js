@@ -1,26 +1,23 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import startMirage from '../../helpers/start-mirage';
 
 moduleForComponent('golfer-profile', 'Integration | Component | golfer profile', {
-  integration: true
+  integration: true,
+  setup() {
+    startMirage(this.container);
+  }
 });
 
-test('it renders', function(assert) {
+test('it renders golfer', function(assert) {
   assert.expect(2);
 
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  const model = server.create('golfer');
+  this.set('model', model);
 
-  this.render(hbs`{{golfer-profile}}`);
+  this.render(hbs`{{golfer-profile golfer=model}}`);
 
-  assert.equal(this.$().text().trim(), '');
+  assert.equal(this.$('li:first').text(), 'Ranking: ' + model.ranking);
+  assert.equal(this.$('li:nth-child(2)').text(), 'Country: ' + model.country);
 
-  // Template block usage:
-  this.render(hbs`
-    {{#golfer-profile}}
-      template block text
-    {{/golfer-profile}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
 });
