@@ -1,73 +1,60 @@
 import Ember from 'ember';
-import { validator, buildValidations } from 'ember-cp-validations';
-
+import EmberValidations from "ember-validations";
 const { service } = Ember.inject;
 
-var Validations = buildValidations({
-  firstName: {
-      debounce: 500,
-      validators: [
-        validator('presence', true),
-        validator('length', {
-          max: 15
-        })
-      ]
-  },
-  lastName: {
-      debounce: 500,
-      validators: [
-        validator('presence', true),
-        validator('length', {
-          max: 25
-        })
-      ]
-  },
-  email: {
-      debounce: 500,
-      validators: [
-        validator('presence', true),
-        validator('format', {
-          type: 'email'
-        })
-      ]
-  },
-  password: {
-      description: 'Password',
-      debounce: 500,
-      validators: [
-        validator('presence', true),
-        validator('length', {
-          min: 4,
-          max: 8
-        }),
-        validator('format', {
-          regex: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,8}$/,
-          message: '{description} must include at least...'
-        })
-      ]
-    }
-});
-
-export default Ember.Component.extend(Validations, {
+export default Ember.Component.extend(EmberValidations, {
   session: service('session'),
+  
+  validations: {
+    firstName: {
+      presence: true,
+      length: {minimum: 1, maximum: 50}
+    },
+    lastName: {
+      presence: true,
+      length: {minimum: 1, maximum: 50}
+    },
+    email: {
+      format: {with: /.*@.*\..*/, message: "Must be formatted like an email"}
+    },
+    password: {
+      length: {minimum: 6},
+      confirmation: true
+    }
+  },
 
 	actions: {
     
     register() {      
+      
       let self = this;
       let { email, password } = this.getProperties('email', 'password');
-      let user = this.store.createRecord('user', {
-        firstName: this.get('firstName'),
-        lastName: this.get('lastName'),
-        email: this.get('email'),
-        password: this.get('password')
-      });
+      
+      this.validate().then(() => {
+        let user = this.store.createRecord('user', {
+          firstName: this.get('firstName'),
+          lastName: this.get('lastName'),
+          email: this.get('email'),
+          password: this.get('password')
+        });
 
-      user.save().then(function() {        
-      	self.get('session').authenticate('authenticator:register', email, password, {}).catch((reason) => {
-          self.set('errorMessage', reason.error || reason);
+        user.save().then(function() {        
+        	self.get('session').authenticate('authenticator:register', email, password, {}).catch((reason) => {
+            self.set('errorMessage', reason.error || reason);
+          });
+        });
+      }).catch((reason) => {
+
+        var errorHashes = reason;
+        var errorKeys = Object.keys(errorHashes);
+        this.get('flashMessages').clearMessages();
+        errorKeys.forEach((key) => {
+          errorHashes[key].forEach((error) => {
+            this.get('flashMessages').danger(key + ': ' + error, {sticky: true});
+          });
         });
       });
+
     }
 
   }
