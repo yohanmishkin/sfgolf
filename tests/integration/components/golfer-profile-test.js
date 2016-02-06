@@ -9,7 +9,7 @@ moduleForComponent('golfer-profile', 'Integration | Component | golfer profile',
   }
 });
 
-test('it renders golfer', function(assert) {
+test('it renders a golfer', function(assert) {
   assert.expect(2);
 
   const model = server.create('golfer');

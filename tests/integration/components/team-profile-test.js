@@ -1,26 +1,24 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import startMirage from '../../helpers/start-mirage';
 
 moduleForComponent('team-profile', 'Integration | Component | team profile', {
-  integration: true
+  integration: true,
+  setup() {
+    startMirage(this.container);
+  }
 });
 
-test('it renders', function(assert) {
-  assert.expect(2);
+test('it renders a team', function(assert) {
+  assert.expect(1);
 
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  let user = server.create('user', { firstName: 'Jack' });
+  let model = server.create('team', { user: user.id });
+  let golfers = server.createList('golfer', 10, { teams: [model.id] } );
 
-  this.render(hbs`{{team-profile}}`);
+  this.set('model', model);
+  this.render(hbs`{{team-profile team=model}}`);
 
-  assert.equal(this.$().text().trim(), '');
+  assert.equal(this.$('h4').text(), user.firstName + "'s team");
 
-  // Template block usage:
-  this.render(hbs`
-    {{#team-profile}}
-      template block text
-    {{/team-profile}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
 });
