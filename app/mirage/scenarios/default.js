@@ -1,6 +1,5 @@
 export default function( server ) {
 
-
 	var rob = server.create('user', { firstName: 'Rob', lastName: 'Pitts', email: 'rp', password: 'asdf' });
 	var doug = server.create('user', { firstName: 'Doug', lastName: 'Miller'});
 	var miraj = server.create('user', { firstName: 'Miraj', lastName: 'Patel'});
@@ -20,15 +19,6 @@ export default function( server ) {
 	server.createList('golfer', 10, { teams: [team1.id, team6.id, team7.id] } );
 	server.createList('golfer', 10, { teams: [team2.id, team5.id] } );
 	server.createList('golfer', 10, { teams: [team3.id, team4.id] } );
-	
-
-	// server.createList('golfer', 30);
-	
-	// var team1 = server.create('team', { id: 1 });
-	// var team2 = server.create('team', { id: 2 });
-
-	// server.db.teams.update(team1.id, { user_id: rob.id, member_ids: [1, 2, 3]});
-	// server.db.teams.update(team2.id, { user_id: doug.id, member_ids: [5, 12, 13]});
 
 	// Seed your development database using your factories. This
 	// data will not be loaded in your tests.

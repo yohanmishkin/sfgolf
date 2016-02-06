@@ -7,7 +7,7 @@
 				<li>{{link-to 'Leaderboard' 'teams'}}</li>
 				<li>{{link-to 'Golfers' 'golfers'}}</li>
 				<li><a href="http://www.masters.com/en_US/index.html" target="_blank">Masters.com</a></li>
-				<li class="pull-right"><a {{action 'logout'}}>{{session.currentUser.name}} | Log out</a></li>
+				<li class="pull-right"><a id="logout" {{action 'logout'}}>{{session.currentUser.name}} | Log out</a></li>
 			{{else}}
 				<li class="pull-right">{{link-to 'Log in' 'login'}}</li>
 				<li class="pull-right">{{link-to 'Sign up' 'signup'}}</li>
