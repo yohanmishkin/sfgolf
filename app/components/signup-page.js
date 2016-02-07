@@ -4,6 +4,7 @@ const { service } = Ember.inject;
 
 export default Ember.Component.extend(EmberValidations, {
   session: service('session'),
+  routing: service('-routing'),
   
   validations: {
     firstName: {
@@ -41,11 +42,13 @@ export default Ember.Component.extend(EmberValidations, {
         user.save().then(function() {        
         	self.get('session').authenticate('authenticator:register', email, password, {}).catch((reason) => {
             self.set('errorMessage', reason.error || reason);
+          }).then(function() {
+            self.get('flashMessages').clearMessages();
+            self.get('flashMessages').success('Signed up successfuly!');
+            self.get('routing').transitionTo('teams');
           });
         });
 
-        this.get('flashMessages').clearMessages();
-        this.get('flashMessages').success('Logged in successfuly!');
 
       }).catch((reason) => {
 
@@ -57,6 +60,7 @@ export default Ember.Component.extend(EmberValidations, {
             this.get('flashMessages').danger(key + ': ' + error, {sticky: true});
           });
         });
+
       });
 
     }
