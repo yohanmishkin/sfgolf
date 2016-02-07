@@ -15,7 +15,7 @@ export default Ember.Component.extend(EmberValidations, {
       length: {minimum: 1, maximum: 50}
     },
     email: {
-      format: {with: /.*@.*\..*/, message: "Must be formatted like an email"}
+      format: {with: /.*@.*\..*/, message: "Please enter a valid email"}
     },
     password: {
       length: {minimum: 6},
@@ -43,6 +43,10 @@ export default Ember.Component.extend(EmberValidations, {
             self.set('errorMessage', reason.error || reason);
           });
         });
+
+        this.get('flashMessages').clearMessages();
+        this.get('flashMessages').success('Logged in successfuly!');
+
       }).catch((reason) => {
 
         var errorHashes = reason;
