@@ -7,7 +7,7 @@ export default Ember.Controller.extend({
 		let team = this.get('session.currentUser.team');		
 		if (typeof team === "undefined") {
 			return false;
-		} else {		
+		} else {
 			let golferId = this.model.get('id');
 			let golfer = team.get('golfers').findBy('id', golferId);
 			if (typeof golfer === "undefined") {

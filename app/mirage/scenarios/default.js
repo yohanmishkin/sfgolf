@@ -8,7 +8,7 @@ export default function( server ) {
 	var blake = server.create('user', { firstName: 'Blake', lastName: 'Myers' });
 	var pete = server.create('user', { firstName: 'Pete', lastName: 'Treadway' });
 
-	var team1 = server.create('team', { user: rob.id});
+	var team1 = server.create('team', { user: rob.id} );
 	var team2 = server.create('team', { user: doug.id });
 	var team3 = server.create('team', { user: miraj.id });
 	var team4 = server.create('team', { user: javier.id });

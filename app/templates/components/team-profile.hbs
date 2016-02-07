@@ -16,7 +16,7 @@
 			</tr>
 		</thead>
 		<tbody>
-		{{#each team.golfers as |golfer|}}
+		{{#each sortedGolfers as |golfer|}}
 			<tr>
 				<td>{{#link-to 'golfers.golfer' golfer}}
 					<span class='link'>{{golfer.name}}</span>
